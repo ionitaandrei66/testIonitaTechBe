@@ -9,11 +9,14 @@ import {
 import { AuthService } from './services/auth.service';
 import { Response } from 'express';
 import { UserAuthDTO } from './models/user-auth-d-t.o';
-import { JwtService } from "@nestjs/jwt";
+import { JwtService } from '@nestjs/jwt';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService, private jwtService: JwtService) {}
+  constructor(
+    private authService: AuthService,
+    private jwtService: JwtService,
+  ) {}
 
   public decodeJWT(codedJWT: string): string | { [key: string]: any } {
     const jwt = codedJWT.replace('Bearer ', '');
@@ -28,7 +31,6 @@ export class AuthController {
   ) {
     return await this.authService.handleLogin(req, res);
   }
-
 
   @Get('check')
   checkAuth(@Req() req: any) {
