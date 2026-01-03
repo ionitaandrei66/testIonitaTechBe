@@ -10,6 +10,7 @@ export class AuthService {
   constructor(private jwtService: JwtService) {}
 
   async login(user: UserAuthInterface) {
+    console.log(user)
     const userExists = await this.validateUser(user.email, user.password);
     if (userExists) {
       const payload = { email: user.email };

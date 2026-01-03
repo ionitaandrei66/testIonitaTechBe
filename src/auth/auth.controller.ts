@@ -1,11 +1,14 @@
 import {
   Body,
-  Controller, Get,
+  Controller,
+  Get,
   HttpCode,
   HttpStatus,
-  Post, Req,
-  Res, UnauthorizedException
-} from "@nestjs/common";
+  Post,
+  Req,
+  Res,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { AuthService } from './services/auth.service';
 import { Response } from 'express';
 import { UserAuthDTO } from './models/user-auth-d-t.o';
