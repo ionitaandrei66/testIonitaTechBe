@@ -4,11 +4,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     ProductsModule,
-    MongooseModule.forRoot('mongodb://127.0.0.1/test2'),
+    MongooseModule.forRoot(process.env.MONGODB_URI as string),
     AuthModule,
   ],
   controllers: [AppController],
