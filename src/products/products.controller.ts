@@ -2,14 +2,11 @@ import {
   Body,
   Controller,
   Get,
-  Headers,
   NotFoundException,
   Post,
   Req,
   UnauthorizedException,
-  UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { JwtService } from '@nestjs/jwt';
 import { ProductsService } from './services/products.service';
 import { CreateAgendaResponse } from './interfaces/create-products-response.interface';
@@ -29,7 +26,6 @@ export class ProductsController {
     @Req() req: any,
   ): Promise<CreateAgendaResponse> {
     const token = req.cookies?.['access_token'];
-    console.log(token)
     if (!token) throw new UnauthorizedException('No token');
     if (token) {
       await this.productsService.create({
