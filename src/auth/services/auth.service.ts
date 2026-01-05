@@ -49,8 +49,7 @@ export class AuthService {
     password: string,
   ): Promise<boolean> {
     return (
-      email === 'test@20202020020asfas@$23523fsa2' &&
-      password === 'a43543asfgt3qwer!4'
+      email === 'andreiIubesteDelia4' && password === 'andreiIubesteDelia422'
     );
   }
 }
