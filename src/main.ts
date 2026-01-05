@@ -15,9 +15,21 @@ async function bootstrap() {
 
   const port = Number(process.env.PORT);
 
-  const corsOrigin = process.env.CORS_ORIGIN;
+  const corsOrigin = process.env.CORS_ORIGIN ?? '';
+  const allowedOrigins = corsOrigin
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+
   app.enableCors({
-    origin: corsOrigin,
+    origin: (origin, callback) => {
+      // allow non-browser tools (curl/postman) with no Origin header
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+
+      return callback(new Error(`CORS blocked for origin: ${origin}`), false);
+    },
     credentials: true,
   });
 
