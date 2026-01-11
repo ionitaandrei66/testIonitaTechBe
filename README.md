@@ -71,3 +71,11 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+
+//for vps 
+docker exec -it mongo mongosh -u root -p rootpass --authenticationDatabase admin
+use test2
+db.dropDatabase()
+exit
